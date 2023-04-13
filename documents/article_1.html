@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>LightGrey Tech</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../index.html" class="logo"><strong>Process Docs</strong> by LIGHTGREY TECH</a>
+									<ul class="icons">
+										<li><a href="https://twitter.com/officiallyjakes" target="_blank" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="https://www.linkedin.com/in/jacob-akande-23a43572/" target="_blank" class="icon brands fa-linkedin"><span class="label">Medium</span></a></li>
+										<li><a href="https://github.com/lightgreytech" target="_blank" class="icon brands fa-github"><span class="label">Medium</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Installing KVM hypervisor on MAC Computers</h1>
+									</header>
+
+									<span class="image main"><img src="../images/kvm_on_mac.jpg" alt="" /></span>
+
+									<p>If you are like me and have longed to use a type 2 hypervisor that directly interacts with your OS kernel and also uses hardware-assisted paravirtualization, then linux KVM is the guy for you. Installing this hypervisor on a linux computer is somewhat straightforward but having it run on the MAC operating system might be a little tricky even though  it’s pretty easy. </p>
+									<p>First we need to understand that it is a two part process: <br>
+                                    “<b>The homebrew</b>” part and the “<b>Port software part</b>”</p>
+									
+                                    <hr class="major" />
+
+									<h2>The Homebrew Part</h2>
+									<ul>
+                                        <li>Make sure that you have homebrew installed so that you can use the ‘<i>brew</i>’ package to install the necessary tool. 
+                                            <ul>
+                                                <li> Type <b><i>brew.sh</i></b> into a web browser on your MAC computer and follow the instructions therein</li>
+                                                <li>Homebrew is a tool that helps you install many linux based packages on MAC</li>
+                                            </ul>
+                                        <li>Install the <b>QEMU stack</b> on you MAC by typing in the terminal;
+                                            <ul>
+                                                <li><pre>$ brew install qemu</pre></li>
+                                            </ul>
+                                        </li>
+                                        <li>Next install <b>libvirt</b> to control qemu stack use the command:
+                                            <ul>
+                                                <li><pre>$ brew install libvirt</pre></li>
+                                            </ul>
+                                        </li>
+                                        <li>Start the <b>VIRT</b> server:
+                                            <ul>
+                                                <li><pre>$ brew services restart libvirt</pre></li>
+                                            </ul>
+                                        </li>
+                                        <li>Install <b>MAC PORT</b>:
+                                            <ul>
+                                                <li>Go to <a href="https://www.macports.org/install.php" target="_blank" class="icon brands">www.macports.org/install.php</a> on a web browser</li>
+                                                <li>Download the <b>PORT</b> software for your specific <b>MAC OS version</b> (pkg)</li>
+                                                <li>Install it on your MAC (<i>might require a reboot or close and reopen terminal to make the PORT command available</i>)</li>
+                                            </ul>
+                                        </li>
+                                        <li>Now move to the next part</li>
+                                        <!-- sample code for lists 
+                                        <li>
+                                            <ul>
+                                                <li><pre></pre></li>
+                                            </ul>
+                                        </li>
+                                        -->
+                                    </ul>
+
+									<hr class="major" />
+
+									<h2>The Port Software Part</h2>
+									<ul>
+                                        <li>On the new terminal install <b>Virt-Manager</b>. 
+                                            <ul>
+                                                <li> <pre>$ sudo port install virt-manager</pre></li>
+                                                <li>For the “<b>Continue</b>” question, answer ‘<b>Y</b>’
+                                                    <ul>
+                                                        <li><i>Note that Virt-manager takes some time to fully install</i></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>The last component is <b>XQUARTZ</b> for X11 systems, install it:
+                                            <ul>
+                                                <li>Go to <a href="https://www.xquartz.org/" target="_blank" class="icon brands">www.xquartz.org</a> and download the <b>PKG</b> file and install it</li>
+                                                <li>It will require you to log out of your system user at completion, Go ahead</li>
+                                            </ul>
+                                        </li>
+                                        <li>Now start virt-manager on the following command
+                                            <ul>
+                                                <li><pre>$virt-manager -c qemu:///session --no-fork</pre></li>
+                                            </ul>
+                                        </li>
+                                        <li>Wait for the <b>Virtual Machine Manager</b> to boot up</li>
+                                        <li>If you have an <b>ISO OS file</b> on your Mac, Select <b>Local Install media</b> (ISO) click <b>Forward</b></li>
+                                        <li>Click on <b>Browse</b> and <b>Browse Local</b> and navigate to the location of the ISO disk <i>(eg Ubuntu 18.04)</i> on your computer </li>
+                                        <li>Choose it and click <b>Forward</b></li>
+                                        <li>Select <b>Memory </b>and <b>CPU</b> accordingly, Click <b>Forward</b></li>
+                                        <li>Select the size of your Disk image and click <b>Forward</b></li>
+                                        <li>Give the VM your desired <b>name</b> and ensure to check the <b>Customize configuration before install</b> checkbox</li>
+                                        <li>Check that every device on the VM is using the <b>virtio</b> device model</li>
+                                        <li>Change the <b>Display</b> to <b>VNC</b> if it is not already on <b>VNC</b>
+                                            <ul>
+                                                <li>Remove everything that uses <b>Spice</b> from the list on the left and if there are no devices using <b>Spice</b>, then you don't need to do anything</li>
+                                            </ul>
+                                        </li>
+                                        <li>Change the video device to <b>Virtio</b> too</li>
+                                        <li>Click on <b>Begin Installation</b> at the top left corner of the same window and watch your VM install</li>
+                                        <li>Finally, to check the number of VMs you have running in your hypervisor, you can use the following command:
+                                            <ul>
+                                                <li><pre>$ virsh list --all</pre></li>
+                                            </ul>
+                                        </li>
+									</ul>
+                                    <hr class="major" />
+
+                                    <h2>The End</h2>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+                <div id="sidebar">
+                    <div class="inner">
+
+                        <!-- Search -->
+                            <section id="search" class="alt">
+                                <form method="post" action="#">
+                                    <input type="text" name="query" id="query" placeholder="Search" />
+                                </form>
+                            </section>
+
+                        <!-- Menu -->
+                        <nav id="menu">
+                            <header class="major">
+                                <h2>Menu</h2>
+                            </header>
+                            <ul>
+                                <li><a href="../index.html">Homepage</a></li>
+                                <li><a href="../learnmore.html">About me</a></li>
+                                <li>
+                                    <span class="opener">Cisco</span>
+                                    <ul>
+                                        <li><a href="#">OSPF</a></li>
+                                        <li><a href="#">Router Initial Config</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="opener">Linux</span>
+                                    <ul>
+                                        <li><a href="#">Mail Servers</a></li>
+                                        <li><a href="#">Web Servers</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="opener">DEVOPS</span>
+                                    <ul>
+                                        <li><a href="#">Nothing Yet</a></li>
+                                    </ul>
+                                    <li>
+                                        <span class="opener">Virtualization</span>
+                                        <ul>
+                                            <li><a href="#">Installing KVM on MAC</a></li>
+                                            <li><a href="#">Installing ESXi</a></li>
+                                        </ul>
+                                    </li>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <!-- Section -->
+                            <section>
+                                <header class="major">
+                                    <h2>Get in touch</h2>
+                                </header>
+                                <p>You could reach out to me via:</p>
+                                <ul class="contact">
+                                    <li class="icon solid fa-envelope"><a href="#">lightgreytech@gmail.com</a></li>
+                                    <li class="icon solid fa-phone">(000) 000-0000</li>
+                                    <li class="icon solid fa-home">1234 Somewhere Road #8254<br />
+                                    Nigeria, 00000-0000</li>
+                                </ul>
+                            </section>
+
+                        <!-- Footer -->
+                            <footer id="footer">
+                                <p class="copyright">&copy; Process Docs. All rights reserved.</p>
+                            </footer>
+
+                    </div>
+                </div>
+
+        </div>
+
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
