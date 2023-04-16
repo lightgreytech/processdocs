@@ -21,59 +21,53 @@
 						<div class="inner">
 
 							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo"><strong>Process Docs</strong> by LIGHTGREY TECH</a>
-									<ul class="icons">
-										<li><a href="https://twitter.com/lightgreytech" target="_blank" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="https://www.linkedin.com/in/jacob-akande-23a43572/" target="_blank" class="icon brands fa-linkedin"><span class="label">Medium</span></a></li>
-										<li><a href="https://github.com/lightgreytech" target="_blank" class="icon brands fa-github"><span class="label">Medium</span></a></li>
-									</ul>
-								</header>
+								<my-header></my-header>
 
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h1>Installing KVM hypervisor on MAC Computers</h1>
+										<h1>Cisco Hyperflex - Hyperconverged infrastructure (HCI)</h1>
 									</header>
 
-									<span class="image main"><img src="images/kvm_on_mac.jpg" alt="" /></span>
+									<span class="image main"><img src="images/hyperflex.jpg" alt="hyperflex" /></span>
 
-									<p>If you are like me and have longed to use a type 2 hypervisor which directly interacts with your OS kernel and also uses hardware-assisted paravirtualization, then linux KVM is the guy for you. Installing this hypervisor on a linux computer is somewhat straightforward but having it run on the MAC operating system might be a little tricky even though  it’s pretty easy. </p>
-									<p>First we need to understand that it is a two part process: <br>
-                                    “<b>The homebrew part</b>” and the “<b>Port software part</b>”</p>
+									<p>Hyperflex is Cisco’s Hyperconverged Infrastructure (HCI) solution for Next Generation Data Centers, which provides one single solution for the configuration and management of the Compute, Storage and Network. There are generally two popular Datacenter Infrastructure Architecture solutions:<br>
+                                    <b>The Converged</b>” (Popular) and the “<b>Hyperconverged</b>” solution </p>
+									
 									
                                     <hr class="major" />
 
-									<h2>The Homebrew Part</h2>
+									<h2>Converged Infrastructure</h2>
+                                    <p>If you are familiar with the traditional data center architecture (Converged Infrastructure), you already know it consists of two things; “<b>A LAN</b>” (Local Area Network) and the “<b>A SAN</b>” Storage Area Network</p>
 									<ul>
-                                        <li>Make sure that you have homebrew installed so that you can use the ‘<i>brew</i>’ package to install the necessary tool. 
+                                        <li><h3>A LAN</h3> 
                                             <ul>
-                                                <li> Type <b><i>brew.sh</i></b> into a web browser on your MAC computer and follow the instructions therein</li>
-                                                <li>Homebrew is a tool that helps you install many linux based packages on MAC</li>
+                                               This is where the traditional Ethernet switching technology happens.The LAN consists of switches(Network) connected to Servers (Compute). In the LAN, client devices (laptops, desktops etc) can directly communicate with services (e.g. web, mail etc) that are hosted on the Servers. In a situation where the service on the Server needs to feed the client with large content (like large size video files - just an example) that requires huge storage, usually the storage capacity on the Servers are not sufficient to handle such traffic. This necessitates the need for a network, dedicated to Storage of files, Operating System boot storage, and every storable thing you can think of. When chunks of storage (LUN) from this Storage Network is set up, it is presented to the Servers as block storage and the chunk appears like it is directly attached to the Servers, while it’s not.
+                                            </ul><br>
+                                        </li>
+                                        <li><h3>A SAN</h3> 
+                                            <ul>
+                                               This is a high speed network/subnetwork that helps store and consolidate block level data, in order to present data stores to Servers. This network consists of two major things:
                                             </ul>
-                                        <li>Install the <b>QEMU stack</b> on you MAC by typing in the terminal;
                                             <ul>
-                                                <li><pre>$ brew install qemu</pre></li>
+                                                <li>
+                                                    <b>Fabric Switches</b>, which are connected to the Servers, and
+                                                </li>
+                                                <li>
+                                                    the actual <b>Storage Devices</b>, (The monster devices that house a bunch of disks) which in turn connect to the Fabric Switches
+                                                </li>
                                             </ul>
                                         </li>
-                                        <li>Next install <b>libvirt</b> to control qemu stack use the command:
-                                            <ul>
-                                                <li><pre>$ brew install libvirt</pre></li>
-                                            </ul>
-                                        </li>
-                                        <li>Start the <b>VIRT</b> server:
-                                            <ul>
-                                                <li><pre>$ brew services restart libvirt</pre></li>
-                                            </ul>
-                                        </li>
-                                        <li>Install <b>MAC PORT</b>:
-                                            <ul>
-                                                <li>Go to <a href="https://www.macports.org/install.php" target="_blank" class="icon brands">www.macports.org/install.php</a> on a web browser</li>
-                                                <li>Download the <b>PORT</b> software for your specific <b>MAC OS version</b> (pkg)</li>
-                                                <li>Install it on your MAC (<i>might require a reboot or close and reopen terminal to make the PORT command available</i>)</li>
-                                            </ul>
-                                        </li>
-                                        <li>Now move to the next part.</li>
+                                        <p>The image below provides a sample of what the solution looks like:
+                                        <ul>
+                                            <div><br>
+                                                <span class="image main">
+                                                    <img src="images/converged.jpg" alt="" />
+                                                </span>
+                                            </div>
+                                        </ul>
+                                        </p>
+                                        Let look at HCI next.
                                         <!-- sample code for lists 
                                         <li>
                                             <ul>
@@ -85,50 +79,35 @@
 
 									<hr class="major" />
 
-									<h2>The Port Software Part</h2>
+									<h2>Hyperconverged Infrastructure (HCI) - Hyperflex</h2>
+                                    <p>Hyperflex is unlike the solution described above. Instead of separating the Compute (Servers), Network(Switches) and Storage as seen in the traditional architecture, HCI brings all components of the Converged architecture to one place.</p>
+                                    <p>A typical Cisco Hyperflex setup would consist of two Nexus 9k switches, two Cisco Fabric Interconnects (FI) to handle the Networking within the solution; and Cisco UCS B and C series servers to handle the Compute and Storage piece of the solution.</p>
 									<ul>
-                                        <li>On the new terminal install <b>Virt-Manager</b>. 
-                                            <ul>
-                                                <li> <pre>$ sudo port install virt-manager</pre></li>
-                                                <li>For the “<b>Continue</b>” question, answer ‘<b>Y</b>’
-                                                    <ul>
-                                                        <li><i>Note that Virt-manager takes some time to fully install</i></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>The last component is <b>XQUARTZ</b> for X11 systems, install it:
-                                            <ul>
-                                                <li>Go to <a href="https://www.xquartz.org/" target="_blank" class="icon brands">www.xquartz.org</a> and download the <b>PKG</b> file and install it</li>
-                                                <li>It will require you to log out of your system user at completion, Go ahead</li>
-                                            </ul>
-                                        </li>
-                                        <li>Now start virt-manager on the following command
-                                            <ul>
-                                                <li><pre>$virt-manager -c qemu:///session --no-fork</pre></li>
-                                            </ul>
-                                        </li>
-                                        <li>Wait for the <b>Virtual Machine Manager</b> to boot up</li>
-                                        <li>If you have an <b>ISO OS file</b> on your Mac, Select <b>Local Install media</b> (ISO) click <b>Forward</b></li>
-                                        <li>Click on <b>Browse</b> and <b>Browse Local</b> and navigate to the location of the ISO disk <i>(eg Ubuntu 18.04)</i> on your computer </li>
-                                        <li>Choose it and click <b>Forward</b></li>
-                                        <li>Select <b>Memory </b>and <b>CPU</b> accordingly, Click <b>Forward</b></li>
-                                        <li>Select the size of your Disk image and click <b>Forward</b></li>
-                                        <li>Give the VM your desired <b>name</b> and ensure to check the <b>Customize configuration before install</b> checkbox</li>
-                                        <li>Check that every device on the VM is using the <b>virtio</b> device model</li>
-                                        <li>Change the <b>Display</b> to <b>VNC</b> if it is not already on <b>VNC</b>
-                                            <ul>
-                                                <li>Remove everything that uses <b>Spice</b> from the list on the left and if there are no devices using <b>Spice</b>, then you don't need to do anything</li>
-                                            </ul>
-                                        </li>
-                                        <li>Change the video device to <b>Virtio</b> too</li>
-                                        <li>Click on <b>Begin Installation</b> at the top left corner of the same window and watch your VM install</li>
-                                        <li>Finally, to check the number of VMs you have running in your hypervisor, you can use the following command:
-                                            <ul>
-                                                <li><pre>$ virsh list --all</pre></li>
-                                            </ul>
-                                        </li>
-									</ul>
+                                        <ul>
+                                            <div><br>
+                                                <span class="image main">
+                                                    <img src="images/hyperconverged.jpg" alt="" />
+                                                </span>
+                                            </div>
+                                        </ul>
+                                    </ul>
+                                    <p>During my implementation of this solution, I found that Hyperflex (Hx) depends largely on VMware’s virtualization technology for hardware abstraction. VMware’s vCenter Server is also required in your environment for successful installation and management of Hyperflex.</p>
+                                    <p>Additionally, your data center will need at least an NTP server to synchronize the time on the devices, a DNS server for name resolution of all the devices and a bunch of IP addresses within different IP subnets.</p>
+                                    <p>On the “Networks” side of things, an engineer requires proficiency in the configuration and troubleshooting of the following data center networking protocols; Virtual Port Channel (vPC), Port Channels, a Router redundancy protocol (HSRP), InterVLAN routing (SVI) and an in depth understanding of general networking concepts.</p>
+                                    <p>The “Hyperflex Data Platform” (HXDP) which is Cisco’s custom HCI software (can be downloaded from the cisco.com download page), must be run to configure all the available hardware devices (and servers preinstalled with VMware's ESXi hypervisor of course) participating in the Hyperflex instance - automating the configuration of Service Profiles, Pools, Templates and other fancy stuff on the Servers and Fabric Interconnects (FI)</p>
+                                    <p>I also found that Hyperflex is a delicate solution and the versions of all the devices and softwares used (ESXi, vCenter, HXDP, Fabric Interconnect Firmware, UCS servers Firmware etc) must be mutually compatible, hence it is highly recommended that you read the Cisco Hyperflex Datasheet for the specific version of hyperflex which you are trying to implement in your datacenter environment.</p>
+                                    <p>At completion of setup, the Cisco “<b>Hyperflex Connect</b>” platform is used for management of the entire solution (together with vCenter). However; device, datastore and virtual machine management can also be done through the cloud if you are able to claim and connect your environment to the <b>Cisco Intersight</b> platform.</p>
+                                    <ul>
+                                        <ul>
+                                            <div><br>
+                                                <span class="image main">
+                                                    <img src="images/hxsystem.jpg" alt="" />
+                                                </span>
+                                            </div>
+                                        </ul>
+                                    </ul>
+                                    <p>To find out more about Cisco Hyperflex, you can check out the following cisco LIVE documentation available here <a href="https://www.ciscolive.com/c/dam/r/ciscolive/apjc/docs/2020/pdf/BRKCOMv-1110.pdf" target="_blank" class="icon brands">https://www.ciscolive.com/c/dam/r/ciscolive/apjc/docs/2020/pdf/BRKCOMv-1110.pdf</a></p>
+                                    <p>Enjoy the hyperconverged adventure</p>
                                     <hr class="major" />
 
                                     <h2>The End</h2>
@@ -138,75 +117,7 @@
 					</div>
 
 				<!-- Sidebar -->
-                <div id="sidebar">
-                    <div class="inner">
-
-                        <!-- Search -->
-                            <section id="search" class="alt">
-                                <form method="post" action="#">
-                                    <input type="text" name="query" id="query" placeholder="Search" />
-                                </form>
-                            </section>
-
-                        <!-- Menu -->
-                        <nav id="menu">
-                            <header class="major">
-                                <h2>Menu</h2>
-                            </header>
-                            <ul>
-                                <li><a href="index.html">Homepage</a></li>
-                                <li><a href="learnmore.html">About me</a></li>
-                                <li>
-                                    <span class="opener">Cisco</span>
-                                    <ul>
-                                        <li><a href="#">OSPF</a></li>
-                                        <li><a href="#">Router Initial Config</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <span class="opener">Linux</span>
-                                    <ul>
-                                        <li><a href="#">Mail Servers</a></li>
-                                        <li><a href="#">Web Servers</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <span class="opener">DEVOPS</span>
-                                    <ul>
-                                        <li><a href="#">Nothing Yet</a></li>
-                                    </ul>
-                                    <li>
-                                        <span class="opener">Virtualization</span>
-                                        <ul>
-                                            <li><a href="article_1.html">Installing KVM Hypervisor on MAC Computer</a></li>
-                                            <li><a href="#">Installing ESXi</a></li>
-                                        </ul>
-                                    </li>
-                                </li>
-                            </ul>
-                        </nav>
-
-                        <!-- Section -->
-                            <section>
-                                <header class="major">
-                                    <h2>Get in touch</h2>
-                                </header>
-                                <p>You could reach out to me via:</p>
-                                <ul class="contact">
-                                    <li class="icon solid fa-envelope"><a href="#">lightgreytech@gmail.com</a></li>
-                                    <li class="icon solid fa-phone">(000) 000-0000</li>
-                                    <li class="icon solid fa-home">1234 Somewhere Road #8254<br />
-                                    Nigeria, 00000-0000</li>
-                                </ul>
-                            </section>
-
-                        <!-- Footer -->
-                            <footer id="footer">
-                                <p class="copyright">&copy; Process Docs. All rights reserved.</p>
-                            </footer>
-
-                    </div>
-                </div>
+                <my-sidebar></my-sidebar>
 
         </div>
 
