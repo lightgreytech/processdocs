@@ -1,8 +1,3 @@
-/*
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
 
 (function($) {
 
@@ -70,6 +65,101 @@
 				});
 
 	// Sidebar.
+	class MySidebar extends HTMLElement {
+		connectedCallback() {
+			this.innerHTML = `
+				<div id="sidebar">
+					<div class="inner">
+	
+					<!-- Search -->
+						<section id="search" class="alt">
+							<form method="post" action="#">
+								<input type="text" name="query" id="query" placeholder="Search" />
+							</form>
+						</section>
+
+					<!-- Menu -->
+					<nav id="menu">
+						<header class="major">
+							<h2>Menu</h2>
+						</header>
+						<ul>
+							<li><a href="index.html">Homepage</a></li>
+							<li><a href="learnmore.html">About me</a></li>
+							<li>
+								<span class="opener">Cisco</span>
+								<ul>
+									<li><a href="#">OSPF</a></li>
+									<li><a href="#">Router Initial Config</a></li>
+								</ul>
+							</li>
+							<li>
+								<span class="opener">Linux</span>
+								<ul>
+									<li><a href="#">Mail Servers</a></li>
+									<li><a href="#">Web Servers</a></li>
+								</ul>
+							</li>
+							<li>
+								<span class="opener">DEVOPS</span>
+								<ul>
+									<li><a href="#">Nothing Yet</a></li>
+								</ul>
+								<li>
+									<span class="opener">Virtualization</span>
+									<ul>
+										<li><a href="article_1.html">Installing KVM Hypervisor on MAC Computer</a></li>
+										<li><a href="#">Cisco Hyperflex - Hyperconverged infrastructure (HCI)</a></li>
+									</ul>
+								</li>
+							</li>
+						</ul>
+					</nav>
+
+					<!-- Section -->
+						<section>
+							<header class="major">
+								<h2>Get in touch</h2>
+							</header>
+							<p>You could reach out to me via:</p>
+							<ul class="contact">
+								<li class="icon solid fa-envelope"><a href="#">lightgreytech@gmail.com</a></li>
+								<li class="icon solid fa-phone">(000) 000-0000</li>
+								<li class="icon solid fa-home">1234 Somewhere Road #8254<br />
+								Nigeria, 00000-0000</li>
+							</ul>
+						</section>
+
+					<!-- Footer -->
+						<footer id="footer">
+							<p class="copyright">&copy; Process Docs. All rights reserved.</p>
+						</footer>
+	
+					</div>
+				</div>
+	
+			`
+		}
+	}
+	
+	customElements.define('my-sidebar', MySidebar)
+
+	class MyHeader extends HTMLElement {
+		connectedCallback() {
+			this.innerHTML = `
+				<header id="header">
+					<a href="index.html" class="logo"><strong>Process Docs</strong> by LIGHTGREY TECH</a>
+					<ul class="icons">
+						<li><a href="https://twitter.com/lightgreytech" target="_blank" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="https://www.linkedin.com/in/jacob-akande-23a43572/" target="_blank" class="icon brands fa-linkedin"><span class="label">Medium</span></a></li>
+						<li><a href="https://github.com/lightgreytech" target="_blank" class="icon brands fa-github"><span class="label">Medium</span></a></li>
+					</ul>
+				</header>
+			`
+		}
+	}
+	customElements.define('my-header', MyHeader)
+
 		var $sidebar = $('#sidebar'),
 			$sidebar_inner = $sidebar.children('.inner');
 
