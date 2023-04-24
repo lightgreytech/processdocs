@@ -121,7 +121,7 @@
 							<header class="major">
 								<h2>Get in touch</h2>
 							</header>
-							<p>You could reach out to me via:</p>
+							<p>You can reach out to me via:</p>
 							<ul class="contact">
 								<li class="icon solid fa-envelope"><a href="mailto:lightgreytech@gmail.com">lightgreytech@gmail.com</a></li>
 								<li class="icon solid fa-phone">(000) 000-0000</li>
