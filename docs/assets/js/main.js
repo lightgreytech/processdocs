@@ -125,8 +125,8 @@
 							<ul class="contact">
 								<li class="icon solid fa-envelope"><a href="mailto:lightgreytech@gmail.com">lightgreytech@gmail.com</a></li>
 								<li class="icon solid fa-phone">(000) 000-0000</li>
-								<li class="icon solid fa-home">1234 Somewhere Road #8254<br />
-								Nigeria, 00000-0000</li>
+								<li class="icon solid fa-home">Digital Nomad; in motion #+234<br />
+								Nationality: Nigerian, 00000-0000</li>
 							</ul>
 						</section>
 
