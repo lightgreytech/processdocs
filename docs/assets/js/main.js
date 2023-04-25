@@ -109,7 +109,7 @@
 									<span class="opener">Virtualization</span>
 									<ul>
 										<li><a href="article_1.html">Installing KVM Hypervisor on MAC Computer</a></li>
-										<li><a href="article_2.html">Cisco Hyperflex - Hyperconverged infrastructure (HCI)</a></li>
+										<li><a href="#">Cisco Hyperflex - Hyperconverged infrastructure (HCI)</a></li>
 									</ul>
 								</li>
 							</li>
